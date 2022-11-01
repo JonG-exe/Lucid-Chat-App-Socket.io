@@ -7,8 +7,13 @@ const
     app = express(),
     http = require("http"),
     server = http.createServer(app),
-    { Server } = require("socket.io"),
-    io = new Server(server);
+    // { Server } = require("socket.io"),
+    // io = new Server(server);
+    io = require("socket.io")(server, {
+        cors: {
+            origin: "*",
+        }
+    })
     PORT = process.env.PORT || 5000;
 
 /**
@@ -44,11 +49,10 @@ messageEventEmitter.on("change", (change => {
  * ================================= Express ======================================== /
  */
 
-app.use(
-    cors({
-        origin: "*"
-    })
-);
+app.use(cors({
+    origin: "http://127.0.0.1:5500"
+}));
+
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 // app.use(express.static("public"))
@@ -59,7 +63,7 @@ app.get("/", (req, res) => {
     res.render("index.html")
 })
 
-io.on("connect", (socket) => {
+io.on("connection", (socket) => {
 
     console.log("A user connected");
 
