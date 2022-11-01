@@ -1,4 +1,4 @@
-var socket = io();
+var socket = io("https://lucidity-chat-app-socket-io.vercel.app");
 const test = document.querySelector(".test")
 const testMessage = document.querySelector(".testMessage")
 
