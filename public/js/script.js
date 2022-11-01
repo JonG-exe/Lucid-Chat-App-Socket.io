@@ -1,4 +1,4 @@
-var socket = io();
+// var socket = io();
 const test = document.querySelector(".test")
 const testMessage = document.querySelector(".testMessage")
 
@@ -14,35 +14,9 @@ fetch("/loadmessages")
         appendMessage(messageObj.message)
     }))
 
-/*--------------------------------------------------*/
 
-// Listen for incoming messages
 
-setInterval(() => {
-    socket.emit("message", "Why is there always a fucking problem")
-}, 1000)
 
-socket.on("message", (message) => {
-    appendMessage(message)
-})
-
-/*--------------------------------------------------*/
-
-// Submit new message to Server
-
-const form = document.querySelector(".form")
-
-form.addEventListener("submit", (event) => {
-
-    event.preventDefault();
-    let message = event.target.message.value;
-
-    socket.emit("message", message)
-    appendMessage(message);
-    addToDB(message);
-    event.target.message.value = "";
-
-})
 
 /*--------------------------------------------------*/
 
