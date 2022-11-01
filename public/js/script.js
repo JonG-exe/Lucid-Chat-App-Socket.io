@@ -6,8 +6,6 @@ const testMessage = document.querySelector(".testMessage")
 
 // Load messages from DB to the client
 
-    // https://server-lucidity-chat-app.vercel.app
-
 fetch("/loadmessages")
     .then(data => data.json())
     .then(data => data.forEach(messageObj => {

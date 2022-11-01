@@ -1,20 +1,17 @@
 const 
     Message = require("./models/Message"),
     mongoose = require("mongoose"),
-    path = require("path")
-    cors = require("cors"),
+    PORT = process.env.PORT || 5000,
+    path = require("path"),
     express = require("express"),
     app = express(),
     http = require("http"),
     server = http.createServer(app),
-    // { Server } = require("socket.io"),
-    // io = new Server(server);
     io = require("socket.io")(server, {
         cors: {
             origin: "*",
         }
-    })
-    PORT = process.env.PORT || 5000;
+    });
 
 /**
  * ================================= Mongoose ======================================== /
@@ -44,24 +41,9 @@ messageEventEmitter.on("change", (change => {
     // console.log(tempNewMessageObj)
 }))
 
-
 /**
- * ================================= Express ======================================== /
+ * ================================= Socket.io ======================================== /
  */
-
-// app.use(cors({
-//     origin: "http://127.0.0.1:5500"
-// }));
-
-app.use(express.urlencoded({extended: true}));
-app.use(express.json());
-// app.use(express.static("public"))
-app.use(express.static(path.join(__dirname, 'public')));
-
-
-app.get("/", (req, res) => {
-    res.render("index.html")
-})
 
 io.on("connection", (socket) => {
 
@@ -75,6 +57,19 @@ io.on("connection", (socket) => {
         console.log("A user disconnected")
     })
 
+})
+
+/**
+ * ================================= Express ======================================== /
+ */
+
+app.use(express.urlencoded({extended: true}));
+app.use(express.json());
+app.use(express.static(path.join(__dirname, 'public')));
+
+
+app.get("/", (req, res) => {
+    res.render("index.html")
 })
 
 app.get("/loadmessages", (req, res) => {
