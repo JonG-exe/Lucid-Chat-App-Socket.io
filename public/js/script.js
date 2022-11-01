@@ -18,9 +18,9 @@ fetch("/loadmessages")
 
 // Listen for incoming messages
 
-socket.on("message", (message) => {
-    appendMessage(message)
-})
+// socket.on("message", (message) => {
+//     appendMessage(message)
+// })
 
 /*--------------------------------------------------*/
 
@@ -33,7 +33,7 @@ form.addEventListener("submit", (event) => {
     event.preventDefault();
     let message = event.target.message.value;
 
-    socket.emit("message", message)
+    // socket.emit("message", message)
     appendMessage(message);
     addToDB(message);
     event.target.message.value = "";
