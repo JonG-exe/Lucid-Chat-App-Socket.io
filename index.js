@@ -59,7 +59,7 @@ app.get("/", (req, res) => {
     res.render("index.html")
 })
 
-io.on("connection", (socket) => {
+io.on("connect", (socket) => {
 
     console.log("A user connected");
 
