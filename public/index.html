@@ -11,16 +11,33 @@
 <body>
     <div class="container">
 
-        <div class="test"></div>
-    
-        <div>
-            <form class="form" action="/add" method="POST">
-                <input class="message" name="message" placeholder="Say something">
-    
-                <button class="submitBtn">Submit</button>
-            </form>
-        </div>
+        <!-- <div class="chat-container">
 
+        </div>
+        ///////////////////// -->
+        <div class="messages">
+
+            <div class="message"></div>
+
+            <div class="form-container">
+                <form class="form" action="/add" method="POST">
+                    <input name="message" placeholder="Say something...">
+        
+                    <button class="submitBtn">
+                        <img class="glass-arrow" src="./images/glass_submit_arrow.png" alt="glass submit arrow">
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    
+        
+
+    </div>
+
+    <div class="balls">
+        <div class="ball ball-left"></div>
+        <div class="ball ball-right"></div>
     </div>
     
     <script src="/socket.io/socket.io.js"></script>

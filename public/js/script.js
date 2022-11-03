@@ -1,6 +1,5 @@
 var socket = io();
-const test = document.querySelector(".test")
-const testMessage = document.querySelector(".testMessage")
+const messages = document.querySelector(".messages")
 
 /*--------------------------------------------------*/
 
@@ -64,8 +63,8 @@ function addToDB(message) {
 function appendMessage(message) {
     const newDiv = document.createElement("div")
     
-    newDiv.classList.add("testMessage")
+    newDiv.classList.add("message")
     newDiv.textContent = message
-    test.appendChild(newDiv)
-    test.scrollTo(0, test.scrollHeight);
+    messages.appendChild(newDiv)
+    messages.scrollTo(0, messages.scrollHeight);
 }
