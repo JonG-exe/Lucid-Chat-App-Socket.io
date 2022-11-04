@@ -1,5 +1,7 @@
 var socket = io();
 const messages = document.querySelector(".messages")
+const chatStart = document.querySelector(".chat-start")
+const firstMessage = true
 
 /*--------------------------------------------------*/
 
@@ -7,16 +9,20 @@ const messages = document.querySelector(".messages")
 
 fetch("/loadmessages")
     .then(data => data.json())
-    .then(data => data.forEach(messageObj => {
-        appendMessage(messageObj.message)
-    }))
+    .then(data => {
+        data.forEach(messageObj => {
+            appendMessage(messageObj.message)
+        })
+    })
 
 /*--------------------------------------------------*/
 
 // Listen for incoming messages
 
 socket.on("message", (message) => {
-    appendMessage(message)
+    let diffUser = true
+    appendMessage(message, diffUser)
+
 })
 
 /*--------------------------------------------------*/
@@ -30,11 +36,12 @@ form.addEventListener("submit", (event) => {
     event.preventDefault();
     let message = event.target.message.value;
 
-    socket.emit("message", message)
-    appendMessage(message);
-    addToDB(message);
-    event.target.message.value = "";
-
+    if (message !== "") {
+        socket.emit("message", message)
+        appendMessage(message);
+        addToDB(message);
+        event.target.message.value = "";
+    }
 })
 
 /*--------------------------------------------------*/
@@ -60,10 +67,12 @@ function addToDB(message) {
 
 // Function appends messages to document
 
-function appendMessage(message) {
+function appendMessage(message, diffUser) {
     const newDiv = document.createElement("div")
     
-    newDiv.classList.add("message")
+    if(diffUser) newDiv.classList.add("message-diff-user")
+    
+    newDiv.classList.add("message") // add message class to all messages
     newDiv.textContent = message
     messages.appendChild(newDiv)
     messages.scrollTo(0, messages.scrollHeight);

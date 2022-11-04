@@ -12,6 +12,8 @@
 
         <div class="chat-container">
 
+            <div class="overlay"></div>
+
             <div class="profile-bar">
                 <div class="profile-owner">
                     <div class="profile-picture">
@@ -32,19 +34,75 @@
                     <div class="profile-name-status">
                         <div class="profile-name">Ronny Den</div>
                         <div class="status">
-                            <p class="current-chat-status">Away</p>
+                            <p class="current-chat-status">Online</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="chats"></div>
+            <div class="chats">
 
-            <div class="messages"></div>
+                <div class="search-contacts">
+                    <input class="search-contacts-input" name="search-contacts" type="text" placeholder="Search chats...">
+
+                    <button class="search-button">
+                        <img src="./images/search-button.png" alt="glass search button">
+                    </button>
+                </div>
+
+                <div class="chat">
+                    <div class="chat-profile-picture">
+                        <!-- <img src="" alt="chat profile image"> -->
+                    </div>
+                    <div class="chat-name"></div>
+                    <div class="chat-message"></div>
+                </div>
+
+                <div class="chat">
+                    <div class="chat-profile-picture">
+                        <!-- <img src="" alt="chat profile image"> -->
+                    </div>
+                    <div class="chat-name"></div>
+                    <div class="chat-message"></div>
+                </div>
+
+                <div class="chat">
+                    <div class="chat-profile-picture">
+                        <!-- <img src="" alt="chat profile image"> -->
+                    </div>
+                    <div class="chat-name"></div>
+                    <div class="chat-message"></div>
+                </div>
+
+                <div class="chat">
+                    <div class="chat-profile-picture">
+                        <!-- <img src="" alt="chat profile image"> -->
+                    </div>
+                    <div class="chat-name"></div>
+                    <div class="chat-message"></div>
+                </div>
+
+                <div class="chat">
+                    <div class="chat-profile-picture">
+                        <!-- <img src="" alt="chat profile image"> -->
+                    </div>
+                    <div class="chat-name"></div>
+                    <div class="chat-message"></div>
+                </div>
+            </div>
+
+            <div class="messages">
+                <div class="chat-start">Chat Start</div>
+            </div>
 
             <div class="form-container">
+
+                <div class="emojis">
+                    <div class="emoji-board"></div>
+                </div>
+
                 <form class="form" action="/add" method="POST">
-                    <input name="message" placeholder="Say something...">
+                    <input name="message" placeholder="Say something..." autocomplete="off">
         
                     <button class="submitBtn">
                         <img class="glass-arrow" src="./images/glass_submit_arrow.png" alt="glass submit arrow">
@@ -65,6 +123,7 @@
     
     <script src="/socket.io/socket.io.js"></script>
     <script src="js/script.js" type="text/javascript"></script>
+    <script src="js/emojis.js" type="text/javascript"></script>
 
 </body>
 </html>

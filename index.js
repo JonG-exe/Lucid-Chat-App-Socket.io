@@ -25,9 +25,9 @@ mongoose.connect(
     }
 )
 .then(
-    console.log("\n\tConnected to mongoDB")
+    console.log("\n\t...Connected to mongoDB...")
 )
-.catch(error => console.log("Error: ", error))
+.catch(error => console.log("Error connecting to mongoDB...: ", error))
 
 /* ------------------------------ */
 
