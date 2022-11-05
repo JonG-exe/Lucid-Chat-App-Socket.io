@@ -19,7 +19,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: linear-gradient(130deg, rgba(1, 236, 245, 0.53) 30%, rgba(4, 55, 197, 0.96) 80%);
+    background-image: linear-gradient(130deg, rgba(1, 237, 245, 0.592) 30%, rgba(4, 55, 197, 0.96) 80%);
 }
 
 .chat-container {
@@ -43,14 +43,15 @@ body {
 }
 
 .overlay {
-    z-index: -1;
+    z-index: 1;
     width: 99%;
     height: 98%;
     margin: 0.5%;
     position: absolute;
-    background-color: rgba(0, 0, 0, 1);
+    background-color: rgba(0, 0, 0, 0.404);
     border-radius: 27px;
-    opacity: 0.4;
+    /* opacity: 0.4; */
+
     /* clip-path: polygon(0 0, 0% 100%, 22.5% 100%, 22.5% 20%, 100% 20%, 100% 20%, 100% 0, 0 0); */
 
     /* clip-path: path('M 0 200 L 0,75 A 5,5 0,0,1 200,75 L 200 200 z'); */
@@ -59,10 +60,14 @@ body {
 
     /* clip-path: path('M 0 0 L 0 100 A 5,5 0,0,0 50,100 L 50 100 L 50 0 z'); */
 
-    /* clip-path: path('M 0 0 L 0 100 C 20 20, 40 20 L 50 100 L 50 0 z'); */
+    clip-path: path('M 0 0 V 600 H 240 V 100 H 1100 V 0 z');
+
+    display: none;
+
 }
 
 .profile-bar {
+    z-index: 2;
     background-image: linear-gradient(110deg, rgba(21, 23, 53, 0.612), rgba(0, 0, 0, 0.526));
     /* backdrop-filter: blur(100px) brightness(0%); */
 
@@ -92,12 +97,13 @@ body {
     height: 90%;
     /* background-color: red; */
     display: flex;
+    /* justify-content: space-around; */
     align-items: center;
 }
 
 .profile-picture {
     /* background-color: blue; */
-    height: 100%;
+    height: 90%;
     display: flex;
     align-items: center;
 }
@@ -143,12 +149,13 @@ body {
 }
 
 .chats {
+    z-index: 2;
     background-image: linear-gradient(110deg, rgba(0, 0, 0, 0.196), rgba(0, 0, 0, 0.455));
     
     backdrop-filter: blur(100px) brightness(0%);
 
     margin-top: 0;
-    margin-left: 1%;
+    margin-left: 0.7%;
     width: 22%;
     height: 81.3%;
     border-bottom-left-radius: 20px;
@@ -166,20 +173,62 @@ body {
 }
 
 .chat {
+    box-sizing: border-box;
+    /* padding-left: 5%; */
     margin-top: 3%;
     width: 94%;
     height: 16.5%;
     border-radius: 15px;
     background-color: rgba(0, 0, 0, 0.319);
+    transition: background-color 0.15s ease;
 
-    outline: 2px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
+    /* outline: 2px solid rgba(255, 255, 255, 0.2); */
+
+}
+
+.chat:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.479);
+    transition: background-color 0.15s ease;
+}
+
+.chat-profile-owner {
+    width: 90%;
+    height: 90%;
+    /* background-color: red; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chat-profile-name {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.profile-name-mini-message {
+    margin: 0;
+    width: 65%;
+    margin: 15px 0 15px 8px;
+    display: flex;
+    flex-direction: column;
+    /* background-color: green; */
+
+}
+
+.mini-message {
+    margin-top: 1.5%;
+    font-size: 0.67em;
+    color: rgba(255, 255, 255, 0.5);
 }
 
 .search-contacts {
     width: 82%;
     height: 25px;
-    margin: 2% 0 0% 0;
+    margin: 2% 0 5% 0;
     border-radius: 15px;
     background-color: rgba(0, 0, 0, 0.319);
     
@@ -196,7 +245,7 @@ body {
 }
 
 .search-contacts-input::placeholder {
-    color: white;
+    color: rgba(255, 255, 255, 0.616);
 }
 
 .search-button {
@@ -215,7 +264,7 @@ body {
 
 .search-button img {
     height: 60%;
-    opacity: 25%;
+    opacity: 35%;
 }
 
 .messages {
@@ -223,9 +272,9 @@ body {
     width: 73.5%;
     /* height: 65%; */
     overflow-y: scroll;
-    height: 80%;
+    height: 64%;
     position: relative;
-    top: -17%;
+    top: 0%;
     /* display: flex;
     flex-direction: column;
     justify-content: flex-end; */
@@ -284,13 +333,15 @@ body {
     background-color: white;
     background-color: rgba(0, 0, 0, 0.401);
     margin: 0;
-    margin: 15px;
+    margin: 15px 50px;
 }
 
 
 .ball {
     background-image:  radial-gradient(circle farthest-side at 28% 37%, #ED00FF, #4D0752);
     border-radius: 50%;
+
+    display: none;
 }
 
 .ball-left {
@@ -311,13 +362,12 @@ body {
 
 
 .form-container {
-    width: 75%;
+    width: 74%;
     height: 12%;
     z-index: 2;
     position: absolute;
-    bottom: 5%;
+    bottom: 2.75%;
     right: 1.5%;
-    /* background-color: pink; */
     background-image: linear-gradient(to bottom right, rgba(255, 255, 255, 0.6), rgb(255, 255, 255, 0.4));
     border-radius: 17px;
     border: 1px solid rgba(255, 255, 255, 0.5);
@@ -344,6 +394,11 @@ input {
 
 }
 
+input::placeholder {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+
 input:active, input:focus {
     outline: none;
     border: none;
@@ -367,22 +422,34 @@ input:active, input:focus {
 }
 
 .emojis {
-    position: relative;
+    z-index: 1;
+    position: absolute;
+    top: -50%;
+    left: 3%;
     width: 3.5vw;
     height: 3.5vw;
     border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.5);
     background-color: yellow;
+    /* background-image: linear-gradient(130deg, rgba(1, 237, 245, 0.303) 30%, rgb(4, 55, 197) 80%);
+    backdrop-filter: blur(1000px); */
+    
+
+
     margin: 0 0 0 1%;
 }
 
 .emoji-board {
     display: none;
     position: absolute;
-    top: -300%;
-    width: 200px;
-    height: 140px;
+    top: -170%;
+    left: -60%;
+    width: 250px;
+    height: 80px;
     border-radius: 10px;
-    background-image: linear-gradient(to bottom right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0));
+    /* background-image: linear-gradient(to bottom right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0)); */
+
+    background-image: linear-gradient(to bottom right, rgba(255, 255, 255, 0.6), rgb(255, 255, 255, 0.4));
 
 }
 
