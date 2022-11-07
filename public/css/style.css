@@ -38,12 +38,12 @@ body {
     display: flex;
     flex-wrap: wrap;
 
-    /* display: none; */
+    transition: all 2s;
 
 }
 
 .overlay {
-    z-index: 1;
+    z-index: -1;
     width: 99%;
     height: 98%;
     margin: 0.5%;
@@ -60,7 +60,7 @@ body {
 
     /* clip-path: path('M 0 0 L 0 100 A 5,5 0,0,0 50,100 L 50 100 L 50 0 z'); */
 
-    clip-path: path('M 0 0 V 600 H 240 V 100 H 1100 V 0 z');
+    /* clip-path: path('M 0 0 V 600 H 240 V 100 H 1100 V 0 z'); */
 
     display: none;
 
@@ -421,38 +421,67 @@ input:active, input:focus {
     align-items: center;
 }
 
-.emojis {
+.emojis-container {
+    cursor: pointer;
     z-index: 1;
     position: absolute;
-    top: -50%;
+    top: -45%;
     left: 3%;
-    width: 3.5vw;
-    height: 3.5vw;
+    width: 3vw;
+    height: 3vw;
     border-radius: 50%;
     border: 1px solid rgba(255, 255, 255, 0.5);
-    background-color: yellow;
-    /* background-image: linear-gradient(130deg, rgba(1, 237, 245, 0.303) 30%, rgb(4, 55, 197) 80%);
-    backdrop-filter: blur(1000px); */
-    
-
+    background-image: linear-gradient(to bottom right, rgba(255, 255, 255, 0.6), rgb(255, 255, 255, 0.4));
+    backdrop-filter: blur(10px);
 
     margin: 0 0 0 1%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.emoji-container-face {
+    margin-top: -10%;
+    font-size: 27px;
+    opacity: 80%;
 }
 
 .emoji-board {
     display: none;
-    position: absolute;
-    top: -170%;
-    left: -60%;
-    width: 250px;
-    height: 80px;
-    border-radius: 10px;
-    /* background-image: linear-gradient(to bottom right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0)); */
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    overflow-y: auto;
+    overflow-x: hidden;
 
+
+    position: absolute;
+    top: -290%;
+    width: 250px;
+    height: 170px;
+    border-radius: 10px;
     background-image: linear-gradient(to bottom right, rgba(255, 255, 255, 0.6), rgb(255, 255, 255, 0.4));
 
 }
 
+.emoji-board::-webkit-scrollbar {
+    display: none;
+}
+
+.emoji {
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    margin: 10px 6px;
+    font-size: 25px;
+    background-color: rgb(61, 61, 61);
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .glass-arrow {
     width: 27%;

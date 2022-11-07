@@ -1,6 +1,7 @@
 const 
     Message = require("./models/Message"),
     mongoose = require("mongoose"),
+    { arrange } = require ("emoji-api"),
     PORT = process.env.PORT || 5000,
     path = require("path"),
     express = require("express"),
@@ -12,6 +13,7 @@ const
             origin: "*",
         }
     });
+
 
 /**
  * ================================= Mongoose ======================================== /
@@ -69,11 +71,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.get("/", (req, res) => {
-    res.render("index.html")
+    res.render("login.html")
 })
 
-app.get("/loadmessages", (req, res) => {
-    Message.find({})
+app.get("/login", (req, res) => {
+    res.render("login.html")
+})
+
+app.get("/loadmessages/:chatId", (req, res) => {
+    let chatId = req.params.chatId
+    console.log("On server load messages: ", chatId)
+
+    Message.find({
+        chatId: chatId
+    })
     .then(data => res.json(data))
 })
 
@@ -82,20 +93,32 @@ app.get("/newmessage", (req, res) => {
     res.json(data)
 })
 
-app.get("/test", (req, res) => {
-    res.json({test: "this is a json test string"})
-})
 
 app.post("/addmessage", (req, res) => {
 
+    let body = req.body
+
     const newMessage = new Message({
-        message: req.body.message,
+        message: body.messageData.message,
+        chatId: body.messageData.chatId,
+        receiverId: "test"
     })
 
     newMessage.save().then(() => console.log("\nSuccessfully saved message..."))
 
     res.sendStatus(200)
 })
+
+app.get("/getemojis", (req, res) => {
+
+    emojisToSend = arrange()["Smileys & Emotion"]
+
+    // console.log("Newmoji: ", emojisToSend[0]["_data"].emoji)
+
+    res.json(emojisToSend)
+})
+
+
 
 server.listen(PORT, () => console.log(`\n\tListening: http://localhost:${PORT}\n`))
 

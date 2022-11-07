@@ -7,13 +7,32 @@ const firstMessage = true
 
 // Load messages from DB to the client
 
-fetch("/loadmessages")
+function getMessages(chatId) {
+    fetch(`/loadmessages/${chatId}`)
     .then(data => data.json())
     .then(data => {
         data.forEach(messageObj => {
             appendMessage(messageObj.message)
         })
     })
+}
+
+getMessages(0)
+
+
+/*--------------------------------------------------*/
+
+// Clear current chat messages 
+
+function clearCurrChat() {
+    let allCurrentMessages = document.querySelectorAll(".message")
+
+    for (let i = 0; i < allCurrentMessages.length; i++) {
+        messages.removeChild(allCurrentMessages[i])
+    }
+}
+
+
 
 /*--------------------------------------------------*/
 
@@ -34,12 +53,16 @@ const form = document.querySelector(".form")
 form.addEventListener("submit", (event) => {
 
     event.preventDefault();
-    let message = event.target.message.value;
+    let messageData = event.target;
+    let message = messageData.message.value;
+
+    console.log("Event target: ", messageData.message)
+
 
     if (message !== "") {
         socket.emit("message", message)
         appendMessage(message);
-        addToDB(message);
+        addToDB(messageData);
         event.target.message.value = "";
     }
 })
@@ -48,12 +71,15 @@ form.addEventListener("submit", (event) => {
 
 // Add message to DB 
 
-function addToDB(message) {
+function addToDB(messageData) {
     fetch("/addmessage", {
         method: "POST",
 
         body: JSON.stringify({
-            message: message
+            messageData: { 
+                message: messageData.message.value,
+                chatId: messageData.chatId.value
+            }
         }),
 
         headers: {
