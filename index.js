@@ -1,7 +1,9 @@
 const 
     Message = require("./models/Message"),
+    User = require("./models/User"),
     mongoose = require("mongoose"),
     { arrange } = require ("emoji-api"),
+    // layouts = require("express-ejs-layouts"),
     PORT = process.env.PORT || 5000,
     path = require("path"),
     express = require("express"),
@@ -69,14 +71,55 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// app.set('views', __dirname + '/views');
+// app.engine('html', ejs);
+app.set('view engine', 'ejs');
+
 
 app.get("/", (req, res) => {
-    res.render("login.html")
+    res.render("login", {loginStatus: ""})
 })
 
-app.get("/login", (req, res) => {
-    res.render("login.html")
+app.post("/login", (req, res) => {
+
+    User.exists({ email: req.body.email, password: req.body.password}, (error, doc) => {
+
+        if(doc == null) {
+            res.render("login", {loginStatus: "user_not_found"})
+        }
+        else{
+            // res.redirect("/chat")
+            res.render("index") // index is chat
+        }
+    })
 })
+
+app.get("/index", (req, res) => {
+    res.render("index", {loginStatus: ""})
+})
+
+app.get("/signup", (req, res) => {
+    res.render("signup")
+})
+
+app.post("/signup", (req, res) => {
+
+    const newUser = new User({
+        name: req.body.name,
+        email: req.body.email,
+        password: req.body.password,
+        id: "need_to_add_custom_ids"
+    })
+
+    newUser.save()
+        .then((user) => {
+            console.log("New user saved: ", user)
+        })
+        .catch(error => {
+            console.log("Erorr try to save new user: ", error)
+        })
+})
+
 
 app.get("/loadmessages/:chatId", (req, res) => {
     let chatId = req.params.chatId
@@ -118,6 +161,9 @@ app.get("/getemojis", (req, res) => {
     res.json(emojisToSend)
 })
 
+app.get("/user_not_found", (req, res) => {
+    res.render("user_not_found")
+})
 
 
 server.listen(PORT, () => console.log(`\n\tListening: http://localhost:${PORT}\n`))

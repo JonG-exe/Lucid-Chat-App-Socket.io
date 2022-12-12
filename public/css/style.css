@@ -20,10 +20,11 @@ body {
     justify-content: center;
     align-items: center;
     background-image: linear-gradient(130deg, rgba(1, 237, 245, 0.592) 30%, rgba(4, 55, 197, 0.96) 80%);
+    /* background-color: rgba(0, 0, 0, 0.8); */
 }
 
 .chat-container {
-    position: relative;
+    position: absolute;
     z-index: 1;
     overflow-y: auto;
     width: 70%;
@@ -38,7 +39,7 @@ body {
     display: flex;
     flex-wrap: wrap;
 
-    transition: all 2s;
+    /* transition: all 2s; */
 
 }
 
@@ -62,7 +63,7 @@ body {
 
     /* clip-path: path('M 0 0 V 600 H 240 V 100 H 1100 V 0 z'); */
 
-    display: none;
+    /* display: none; */
 
 }
 

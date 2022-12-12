@@ -61,8 +61,6 @@ function allowEmojiClick() {
     const emojis = document.querySelectorAll(".emoji")
     const formInput = document.querySelector(".message-input")
     
-    // console.log("EMoji divs found: ", emojis)
-    
     for (let i = 0; i < emojis.length; i++) {
         emojis[i].addEventListener("click", () => {
             formInput.value = formInput.value + emojis[i].textContent

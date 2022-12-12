@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
-    <title>My Chat App</title>
+    <title>Lucid Chat App</title>
 </head>
 <body>
     <div class="container">
 
-        <div class="chat-container">
+        <div class="chat-container movable">
 
             <div class="overlay"></div>
 
@@ -92,7 +92,7 @@
                     </div>
                 </div>
 
-                <!-- 
+                
 
                 <div class="chat">
                     <div class="chat-profile-owner">
@@ -120,7 +120,7 @@
                             </div>
                         </div>
                     </div>
-                </div> -->
+                </div>
 
                 
             </div>
@@ -135,12 +135,7 @@
                     <div class="emoji-container-face">🤗</div>
                 </button>
 
-                <div class="emoji-board">
-                    <!-- <div class="emoji">🤗</div>
-                    <div class="emoji">😠</div>
-                    <div class="emoji">❤️</div>
-                    <div class="emoji">🌧️</div> -->
-                </div>
+                <div class="emoji-board"></div>
 
                 <form class="form" action="/add" method="POST">
                     <input class="message-input" name="message" placeholder="Say something..." autocomplete="off">
@@ -165,6 +160,9 @@
     <script src="js/script.js" type="text/javascript"></script>
     <script src="js/emojis.js" type="text/javascript"></script>
     <script src="js/currentChat.js" type="text/javascript"></script>
+
+
+    <script src="js/moveElements.js" type="text/javascript"></script>
 
 </body>
 </html>
